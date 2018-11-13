@@ -11,8 +11,9 @@ auth.set_access_token(credentials["access_token"], credentials["access_token_sec
 
 api = tweepy.API(auth)
 
-tweets = api.user_timeline("year_progress")
+tweets = api.user_timeline(screen_name="tinycarebot", count=1000)
 
 with open ("/Users/sandeepkhanna/Desktop/Fun/Bot_Recommender/data/raw/sampleTweets.json", "a") as writeFile:
     for tweet in tweets:
-        writeFile.write('%s\n' %tweet)
+        writeFile.write('%s\n' %tweet._json)
+        print("Tweet: ", tweet._json["text"])
